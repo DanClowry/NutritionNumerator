@@ -6,6 +6,7 @@ namespace NutritionNumerator.Models
 {
     public enum MenuItemType
     {
+        Summary,
         Browse,
         About
     }
