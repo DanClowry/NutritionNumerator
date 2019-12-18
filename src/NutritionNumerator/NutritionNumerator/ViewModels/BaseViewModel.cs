@@ -7,12 +7,25 @@ using Xamarin.Forms;
 
 using NutritionNumerator.Models;
 using NutritionNumerator.Services;
+using TinyIoC;
+using FoodDataCentral;
+using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 namespace NutritionNumerator.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
+
+        public static TinyIoCContainer Container { get; set; } = new TinyIoCContainer();
+
+        static BaseViewModel()
+        {
+            string key = Task.Run(async () => await SecureStorage.GetAsync("api-key")).Result;
+
+            Container.Register(new FoodDataCentralAPI(key));
+        }
 
         bool isBusy = false;
         public bool IsBusy

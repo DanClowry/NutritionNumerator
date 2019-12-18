@@ -19,7 +19,7 @@ namespace NutritionNumerator.Views
 
         private void OnAddClicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new ItemsPage());
+            Navigation.PushAsync(new SearchPage());
         }
     }
 }

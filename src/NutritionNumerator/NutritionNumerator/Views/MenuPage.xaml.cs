@@ -21,7 +21,7 @@ namespace NutritionNumerator.Views
             menuItems = new List<HomeMenuItem>
             {
                 new HomeMenuItem {Id = MenuItemType.Summary, Title="Summary"},
-                new HomeMenuItem {Id = MenuItemType.Browse, Title="Browse" },
+                new HomeMenuItem {Id = MenuItemType.Browse, Title="Search" },
                 new HomeMenuItem {Id = MenuItemType.About, Title="About" }
             };
 

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="NutritionNumerator.Views.SearchPage"
+             Title="{Binding Title}">
+    <ContentPage.Content>
+        <StackLayout>
+            <SearchBar x:Name="FoodSearchBar" Placeholder="Search for food..." 
+                       SearchCommand="{Binding SearchCommand}" 
+                       SearchCommandParameter="{Binding Source={x:Reference FoodSearchBar}, Path=Text}" />
+            <ListView x:Name="ItemsListView"
+                ItemsSource="{Binding Results}"
+                VerticalOptions="FillAndExpand"
+                RefreshCommand="{Binding LoadItemsCommand}"
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                CachingStrategy="RecycleElement">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Label Text="{Binding Description}" FontAttributes="Bold" Margin="10,0" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
