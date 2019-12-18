@@ -1,7 +1,8 @@
-﻿using System;
+﻿using NutritionNumerator.ViewModels;
+using System;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace NutritionNumerator.Views
 {
@@ -10,9 +11,27 @@ namespace NutritionNumerator.Views
     [DesignTimeVisible(false)]
     public partial class AboutPage : ContentPage
     {
+        AboutViewModel viewModel;
+
         public AboutPage()
         {
             InitializeComponent();
+
+            BindingContext = viewModel = new AboutViewModel();
+            ApiKeyField.Text = Task.Run(async() => await viewModel.GetApiKeyAsync()).Result;
+        }
+
+        async void OnSaveClicked(object sender, EventArgs e)
+        {
+            try
+            {
+                await viewModel.SetApiKeyAsync(ApiKeyField.Text);
+            }
+            catch (Exception)
+            {
+                await DisplayAlert("Unable to save key", "The API key could not be saved", "OK");
+                throw;
+            }
         }
     }
 }

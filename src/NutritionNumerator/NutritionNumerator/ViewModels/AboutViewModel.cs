@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace NutritionNumerator.ViewModels
@@ -11,9 +12,19 @@ namespace NutritionNumerator.ViewModels
         {
             Title = "About";
 
-            OpenWebCommand = new Command(() => Device.OpenUri(new Uri("https://xamarin.com/platform")));
+            OpenKeySignupCommand = new Command(() => Launcher.OpenAsync(new Uri("https://api.data.gov/signup")));
         }
 
-        public ICommand OpenWebCommand { get; }
+        public ICommand OpenKeySignupCommand { get; }
+
+        public async Task<string> GetApiKeyAsync()
+        {
+            return await SecureStorage.GetAsync("api-key");
+        }
+
+        public async Task SetApiKeyAsync(string newKey)
+        {
+            await SecureStorage.SetAsync("api-key", newKey);
+        }
     }
 }

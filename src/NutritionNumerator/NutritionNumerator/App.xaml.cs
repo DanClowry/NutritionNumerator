@@ -1,8 +1,8 @@
 ﻿using System;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 using NutritionNumerator.Services;
 using NutritionNumerator.Views;
+using Xamarin.Essentials;
 
 namespace NutritionNumerator
 {
@@ -17,9 +17,21 @@ namespace NutritionNumerator
             MainPage = new MainPage();
         }
 
-        protected override void OnStart()
+        protected async override void OnStart()
         {
-            // Handle when your app starts
+            if (String.IsNullOrWhiteSpace(await SecureStorage.GetAsync("api-key")))
+            {
+                string key = await MainPage.DisplayPromptAsync("No API Key", "An API key is needed to use the app. Please generate one at https://api.data.gov/signup/");
+                try
+                {
+                    await SecureStorage.SetAsync("api-key", key);
+                }
+                catch (Exception)
+                {
+                    await MainPage.DisplayAlert("Unable to save key", "The API key could not be saved", "OK");
+                    throw;
+                }
+            }
         }
 
         protected override void OnSleep()

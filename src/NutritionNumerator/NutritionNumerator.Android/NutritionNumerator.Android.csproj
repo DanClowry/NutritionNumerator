@@ -85,6 +85,7 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
     <AndroidResource Include="Resources\drawable\xamarin_logo.png" />
+    <AndroidResource Include="Resources\xml\backup_rules.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NutritionNumerator\NutritionNumerator.csproj">
