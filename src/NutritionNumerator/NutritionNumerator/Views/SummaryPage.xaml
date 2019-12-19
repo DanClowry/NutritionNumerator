@@ -4,7 +4,8 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="NutritionNumerator.Views.SummaryPage">
+             x:Class="NutritionNumerator.Views.SummaryPage"
+             Title="{Binding Title}">
     <ContentPage.Content>
         <StackLayout>
             <Button Text="Add Food" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="5,0,5,10" Clicked="OnAddClicked"/>

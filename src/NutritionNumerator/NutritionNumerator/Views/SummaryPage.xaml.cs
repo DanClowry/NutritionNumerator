@@ -1,25 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using NutritionNumerator.ViewModels;
+using System;
 
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace NutritionNumerator.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SummaryPage : ContentPage
     {
         public SummaryPage()
         {
             InitializeComponent();
+
+            BindingContext = new SummaryViewModel();
         }
 
-        private void OnAddClicked(object sender, EventArgs e)
+        async void OnAddClicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new SearchPage());
+            await Navigation.PushAsync(new SearchPage());
         }
     }
 }
