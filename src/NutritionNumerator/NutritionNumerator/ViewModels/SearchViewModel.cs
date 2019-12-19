@@ -11,6 +11,11 @@ namespace NutritionNumerator.ViewModels
     {
         public ObservableCollection<SearchResultFood> Results { get; private set; }
         public ICommand SearchCommand { get; }
+        public ICommand LoadPageCommand { get; }
+
+        private string searchTerm;
+        private int currentPage = 1;
+        private int maxPage;
 
         FoodDataCentralAPI api = Container.Resolve<FoodDataCentralAPI>();
 
@@ -19,17 +24,38 @@ namespace NutritionNumerator.ViewModels
             Title = "Search";
             Results = new ObservableCollection<SearchResultFood>();
 
-            SearchCommand = new Command<string>(async (string term) => await Search(term));
+            SearchCommand = new Command<string>(async (string term) => { searchTerm = term; await Search(true); });
         }
 
-        public async Task Search(string searchTerm)
+        public async Task Search(bool resetList)
         {
-            var result = await api.Search(searchTerm);
-            Results.Clear();
+            if (IsBusy || (maxPage == currentPage && !resetList))
+            {
+                return;
+            }
+
+            IsBusy = true;
+
+            if (resetList)
+            {
+                currentPage = 1;
+                Results.Clear();
+            }
+
+            var result = await api.Search(searchTerm, pageNumber: currentPage, requireAllWords: true);
+            maxPage = result.TotalPages;
+
             foreach (var food in result.Foods)
             {
                 Results.Add(food);
             }
+
+            if (maxPage != currentPage && !resetList)
+            {
+                currentPage += 1;
+            }
+
+            IsBusy = false;
         }
     }
 }
