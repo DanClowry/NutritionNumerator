@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="NutritionNumerator.Views.FoodDetailPage"
+             Title="{Binding Title}">
+    <ContentPage.Content>
+        <StackLayout Margin="20">
+            <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" 
+                               VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+            <Label Text="{Binding Food.Description}" FontSize="Medium" FontAttributes="Bold" />
+            <BoxView VerticalOptions="Center" HeightRequest="1" Color="Black" />
+            <Label Text="Per 100 grams" FontSize="Subtitle" FontAttributes="Italic" />
+            <ListView ItemsSource="{Binding FoodNutrients}" IsEnabled="False" SeparatorVisibility="None" 
+                      RowHeight="30" VerticalScrollBarVisibility="Never">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid VerticalOptions="CenterAndExpand" ColumnSpacing="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding Nutrient.Name}" Grid.Column="0" FontAttributes="Bold" />
+                                <Label Grid.Column="1">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding Amount}" />
+                                            <Span Text="{Binding Nutrient.UnitName}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,4 +1,5 @@
-﻿using NutritionNumerator.ViewModels;
+﻿using FoodDataCentral.Models;
+using NutritionNumerator.ViewModels;
 using System;
 using Xamarin.Forms;
 
@@ -15,7 +16,7 @@ namespace NutritionNumerator.Views
             BindingContext = viewModel = new SearchViewModel();
         }
 
-        public async void LoadNextPage(object sender, ItemVisibilityEventArgs e)
+        async void LoadNextPage(object sender, ItemVisibilityEventArgs e)
         {
             if (viewModel.IsBusy || viewModel.Results.Count == 0)
             {
@@ -26,6 +27,12 @@ namespace NutritionNumerator.Views
             {
                 await viewModel.Search(false);
             }
+        }
+
+        async void ItemSelected(object sender, ItemTappedEventArgs e)
+        {
+            var food = (SearchResultFood)e.Item;
+            await Navigation.PushAsync(new FoodDetailPage(new FoodDetailViewModel(food.FdcId)));
         }
     }
 }

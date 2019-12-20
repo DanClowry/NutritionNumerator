@@ -17,6 +17,7 @@
                 RefreshCommand="{Binding LoadItemsCommand}"
                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                 ItemAppearing="LoadNextPage"
+                ItemTapped="ItemSelected"
                 CachingStrategy="RecycleElement">
                 <ListView.ItemTemplate>
                     <DataTemplate>
