@@ -11,6 +11,7 @@ using TinyIoC;
 using FoodDataCentral;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
+using System.IO;
 
 namespace NutritionNumerator.ViewModels
 {
