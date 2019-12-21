@@ -37,6 +37,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <Button Text="Add" Clicked="OnAddClicked" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

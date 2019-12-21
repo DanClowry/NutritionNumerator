@@ -7,8 +7,58 @@
              x:Class="NutritionNumerator.Views.SummaryPage"
              Title="{Binding Title}">
     <ContentPage.Content>
-        <StackLayout>
-            <Button Text="Add Food" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="5,0,5,10" Clicked="OnAddClicked"/>
-        </StackLayout>
+        <Grid Padding="10" ColumnSpacing="10" RowSpacing="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="15*" />
+                <RowDefinition Height="10*" />
+                <RowDefinition Height="10*" />
+                <RowDefinition Height="65*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50*" />
+                <ColumnDefinition Width="50*" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" 
+                   HorizontalOptions="Center" VerticalOptions="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Energy: " FontSize="Large" FontAttributes="Bold" />
+                        <Span Text="{Binding Day.EnergykCal}" FontSize="Large" />
+                        <Span Text=" kCal" FontSize="Large" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label Grid.Row="1" Grid.Column="0" 
+                   HorizontalOptions="Start" VerticalOptions="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Protein: " FontSize="Medium" FontAttributes="Bold" />
+                        <Span Text="{Binding Day.Protein}" FontSize="Medium" />
+                        <Span Text=" grams" FontSize="Medium" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label Grid.Row="1" Grid.Column="1"
+                   HorizontalOptions="End" VerticalOptions="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Fat: " FontSize="Medium" FontAttributes="Bold" />
+                        <Span Text="{Binding Day.Fat}" FontSize="Medium" />
+                        <Span Text=" grams" FontSize="Medium" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label Grid.Row="2" Grid.Column="0"
+                   HorizontalOptions="Start" VerticalOptions="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Carbs: " FontSize="Medium" FontAttributes="Bold" />
+                        <Span Text="{Binding Day.Carbohydrates}" FontSize="Medium" />
+                        <Span Text=" grams" FontSize="Medium" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Button Text="Add Food" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="5,0,5,10" VerticalOptions="End" Clicked="OnAddClicked"/>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

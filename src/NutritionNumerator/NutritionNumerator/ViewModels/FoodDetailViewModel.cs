@@ -1,5 +1,7 @@
 ﻿using FoodDataCentral;
 using FoodDataCentral.Models;
+using NutritionNumerator.Services;
+using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
@@ -56,6 +58,17 @@ namespace NutritionNumerator.ViewModels
             Food = await api.GetFoodById(fdcId);
 
             IsBusy = false;
+        }
+
+        public async Task SaveFood()
+        {
+            var dataStore = Container.Resolve<IDataStore>();
+            var day = await dataStore.GetDayAsync(DateTime.Today);
+            day.EnergykCal += Food.FoodNutrients[NutrientType.EnergyKcal].Amount;
+            day.Protein += Food.FoodNutrients[NutrientType.Protein].Amount;
+            day.Carbohydrates += Food.FoodNutrients[NutrientType.CarbohydrateByDifference].Amount;
+            day.Fat += Food.FoodNutrients[NutrientType.Lipid].Amount;
+            await dataStore.SaveDayAsync(day);
         }
     }
 }

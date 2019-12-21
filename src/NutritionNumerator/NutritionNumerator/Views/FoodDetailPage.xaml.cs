@@ -1,22 +1,25 @@
 ﻿using NutritionNumerator.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace NutritionNumerator.Views
 {
     public partial class FoodDetailPage : ContentPage
     {
+        private FoodDetailViewModel viewModel;
+
         public FoodDetailPage(FoodDetailViewModel viewModel)
         {
             InitializeComponent();
 
-            BindingContext = viewModel;
+            BindingContext = this.viewModel = viewModel;
+        }
+
+        async void OnAddClicked(object sender, EventArgs e)
+        {
+            await viewModel.SaveFood();
+            await Navigation.PopToRootAsync();
         }
     }
 }
