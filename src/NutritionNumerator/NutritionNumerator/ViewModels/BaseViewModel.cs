@@ -16,8 +16,6 @@ namespace NutritionNumerator.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
-
         public static TinyIoCContainer Container { get; set; } = new TinyIoCContainer();
 
         static BaseViewModel()
