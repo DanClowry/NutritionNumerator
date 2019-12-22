@@ -23,6 +23,11 @@ namespace NutritionNumerator.Views
             await Navigation.PushAsync(new SearchPage());
         }
 
+        async void OnViewClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new AddedFoodPage(new AddedFoodViewModel(viewModel.Day)));
+        }
+
         protected override async void OnAppearing()
         {
             base.OnAppearing();

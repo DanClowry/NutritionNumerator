@@ -58,7 +58,10 @@
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
-            <Button Text="Add Food" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="5,0,5,10" VerticalOptions="End" Clicked="OnAddClicked"/>
+            <StackLayout Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" VerticalOptions="End">
+                <Button Text="Add Food" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Clicked="OnAddClicked" />
+                <Button Text="View Added Food" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" VerticalOptions="End" Clicked="OnViewClicked" />
+            </StackLayout>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
