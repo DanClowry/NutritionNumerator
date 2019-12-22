@@ -20,9 +20,18 @@ namespace NutritionNumerator.ViewModels
 
         static BaseViewModel()
         {
-            string key = Task.Run(async () => await SecureStorage.GetAsync("api-key")).Result;
+            var localAppPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            string dbPath = Path.Combine(localAppPath, "Food.db3");
 
-            Container.Register(new FoodDataCentralAPI(key));
+            Container.Register(new SettingsService());
+            var settings = Container.Resolve<SettingsService>();
+            if (!String.IsNullOrWhiteSpace(settings.GetApiKeyAsync().Result))
+            {
+                string key = settings.GetApiKeyAsync().Result;
+                Container.Register(new FoodDataCentralAPI(key));
+            }
+
+            Container.Register<IDataStore>(new SqliteDataStore(dbPath));
         }
 
         bool isBusy = false;
