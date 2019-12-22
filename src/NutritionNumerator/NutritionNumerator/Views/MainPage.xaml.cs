@@ -36,6 +36,9 @@ namespace NutritionNumerator.Views
                     case (int)MenuItemType.Browse:
                         MenuPages.Add(id, new NavigationPage(new SearchPage()));
                         break;
+                    case (int)MenuItemType.History:
+                        MenuPages.Add(id, new NavigationPage(new HistoryPage()));
+                        break;
                     case (int)MenuItemType.About:
                         MenuPages.Add(id, new NavigationPage(new AboutPage()));
                         break;

@@ -8,6 +8,7 @@ namespace NutritionNumerator.Models
     {
         Summary,
         Browse,
+        History,
         About
     }
     public class HomeMenuItem
