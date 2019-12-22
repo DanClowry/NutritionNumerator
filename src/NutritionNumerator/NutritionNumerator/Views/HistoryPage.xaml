@@ -7,11 +7,12 @@
              x:Class="NutritionNumerator.Views.HistoryPage"
              Title="{Binding Title}">
     <ContentPage.Content>
-        <ListView x:Name="ItemsListView"
+        <ListView x:Name="HistoryListView"
                 ItemsSource="{Binding Days}"
                 VerticalOptions="FillAndExpand"
                 RefreshCommand="{Binding GetDaysCommand}"
                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                ItemTapped="ItemSelected"
                 CachingStrategy="RecycleElement">
             <ListView.ItemTemplate>
                 <DataTemplate>

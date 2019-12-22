@@ -1,22 +1,32 @@
-﻿using NutritionNumerator.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using NutritionNumerator.Models.DataStore;
+using NutritionNumerator.ViewModels;
+using System.Windows.Input;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace NutritionNumerator.Views
 {
     public partial class HistoryPage : ContentPage
     {
+        HistoryViewModel viewModel;
+
         public HistoryPage()
         {
             InitializeComponent();
 
-            BindingContext = new HistoryViewModel();
+            BindingContext = viewModel = new HistoryViewModel();
+        }
+
+        async void ItemSelected(object sender, ItemTappedEventArgs e)
+        {
+            var day = (Day)e.Item;
+            await Navigation.PushAsync(new SummaryPage(new SummaryViewModel(day.Date)));
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            viewModel.GetDaysCommand.Execute("");
         }
     }
 }

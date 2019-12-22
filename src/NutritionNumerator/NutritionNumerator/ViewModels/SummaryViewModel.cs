@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace NutritionNumerator.ViewModels
 {
-    class SummaryViewModel : BaseViewModel
+    public class SummaryViewModel : BaseViewModel
     {
         private Day day;
 
@@ -16,22 +16,45 @@ namespace NutritionNumerator.ViewModels
         }
 
 
-        private IDataStore dataStore;
+        private IDataStore dataStore = Container.Resolve<IDataStore>();
 
-        public SummaryViewModel()
+        public SummaryViewModel(DateTime date)
         {
-            Title = "Summary";
-            dataStore = Container.Resolve<IDataStore>();
+            InitPage(date);
         }
 
-        public async Task GetToday()
+        async Task InitPage(DateTime date)
         {
-            var today = await dataStore.GetDayAsync(DateTime.Today);
-            if (today == null)
+            Day = await GetDay(date);
+            Title = $"Summary {date.ToShortDateString()}";
+        }
+
+        public async Task<Day> GetDay(DateTime date)
+        {
+            IsBusy = true;
+
+            var day = await dataStore.GetDayAsync(date);
+            if (day == null)
             {
-                await dataStore.SaveDayAsync(new Day() { Date = DateTime.Today });
+                await dataStore.SaveDayAsync(new Day() { Date = date });
+                day = await dataStore.GetDayAsync(date);
             }
-            Day = await dataStore.GetDayAsync(DateTime.Today);
+            
+            IsBusy = false;
+
+            return day;
+        }
+
+        public async Task RefreshDay()
+        {
+            if (Day.Date == null)
+            {
+                Day = await GetDay(DateTime.Today);
+            }
+            else
+            {
+                Day = await GetDay(Day.Date);
+            }
         }
     }
 }

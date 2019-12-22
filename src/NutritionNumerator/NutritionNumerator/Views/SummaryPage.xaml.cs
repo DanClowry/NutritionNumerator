@@ -9,11 +9,13 @@ namespace NutritionNumerator.Views
     {
         private SummaryViewModel viewModel;
 
-        public SummaryPage()
+        public SummaryPage() : this(new SummaryViewModel(DateTime.Today)) { }
+        public SummaryPage(SummaryViewModel viewModel)
         {
             InitializeComponent();
 
-            BindingContext = viewModel = new SummaryViewModel();
+            BaseViewModel.Container.Register(viewModel, "selectedViewModel");
+            BindingContext = this.viewModel = viewModel;
         }
 
         async void OnAddClicked(object sender, EventArgs e)
@@ -25,7 +27,7 @@ namespace NutritionNumerator.Views
         {
             base.OnAppearing();
 
-            await viewModel.GetToday();
+            await viewModel.RefreshDay();
         }
     }
 }

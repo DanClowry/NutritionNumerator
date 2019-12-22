@@ -1,7 +1,6 @@
 ﻿using FoodDataCentral;
 using FoodDataCentral.Models;
 using NutritionNumerator.Services;
-using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
@@ -63,7 +62,8 @@ namespace NutritionNumerator.ViewModels
         public async Task SaveFood()
         {
             var dataStore = Container.Resolve<IDataStore>();
-            var day = await dataStore.GetDayAsync(DateTime.Today);
+            var summaryViewModel = Container.Resolve<SummaryViewModel>("selectedViewModel");
+            var day = summaryViewModel.Day;
             day.EnergykCal += Food.FoodNutrients[NutrientType.EnergyKcal].Amount;
             day.Protein += Food.FoodNutrients[NutrientType.Protein].Amount;
             day.Carbohydrates += Food.FoodNutrients[NutrientType.CarbohydrateByDifference].Amount;

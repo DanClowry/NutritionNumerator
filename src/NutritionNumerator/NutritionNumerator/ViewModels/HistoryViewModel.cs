@@ -34,6 +34,7 @@ namespace NutritionNumerator.ViewModels
             var days = await dataStore.GetDaysAsync();
             days = days.OrderBy(d => d.Date).ThenBy(d => d.Date).Reverse().ToList();
 
+            Days.Clear();
             foreach (Day day in days)
             {
                 Days.Add(day);
