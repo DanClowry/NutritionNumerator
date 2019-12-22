@@ -1,5 +1,6 @@
 ﻿using NutritionNumerator.Models.DataStore;
 using SQLite;
+using SQLiteNetExtensionsAsync.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,16 +16,17 @@ namespace NutritionNumerator.Services
         {
             database = new SQLiteAsyncConnection(dbPath, SQLiteOpenFlags.Create | SQLiteOpenFlags.ReadWrite);
             database.CreateTableAsync<Day>().Wait();
+            database.CreateTableAsync<FoodDS>().Wait();
         }
 
         public Task<List<Day>> GetDaysAsync()
         {
-            return database.Table<Day>().ToListAsync();
+            return database.GetAllWithChildrenAsync<Day>();
         }
 
         public Task<Day> GetDayAsync(int id)
         {
-            return database.Table<Day>().Where(d => d.Id == id).FirstOrDefaultAsync();
+            return database.GetWithChildrenAsync<Day>(id, recursive: true);
         }
 
         public async Task<Day> GetDayAsync(DateTime date)
@@ -33,21 +35,14 @@ namespace NutritionNumerator.Services
             return days.Where(d => DateTime.Equals(d.Date.Date, date)).FirstOrDefault();
         }
 
-        public Task<int> SaveDayAsync(Day day)
+        public Task SaveDayAsync(Day day)
         {
-            if (day.Id != 0)
-            {
-                return database.UpdateAsync(day);
-            }
-            else
-            {
-                return database.InsertAsync(day);
-            }
+            return database.InsertOrReplaceWithChildrenAsync(day, recursive: true);
         }
 
-        public Task<int> DeleteDayAsync(Day day)
+        public Task DeleteDayAsync(Day day)
         {
-            return database.DeleteAsync(day);
+            return database.DeleteAsync(day, true);
         }
     }
 }

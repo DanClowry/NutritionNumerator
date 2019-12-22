@@ -1,6 +1,8 @@
 ﻿using FoodDataCentral;
 using FoodDataCentral.Models;
+using NutritionNumerator.Models.DataStore;
 using NutritionNumerator.Services;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
@@ -64,10 +66,19 @@ namespace NutritionNumerator.ViewModels
             var dataStore = Container.Resolve<IDataStore>();
             var summaryViewModel = Container.Resolve<SummaryViewModel>("selectedViewModel");
             var day = summaryViewModel.Day;
-            day.EnergykCal += Food.FoodNutrients[NutrientType.EnergyKcal].Amount;
-            day.Protein += Food.FoodNutrients[NutrientType.Protein].Amount;
-            day.Carbohydrates += Food.FoodNutrients[NutrientType.CarbohydrateByDifference].Amount;
-            day.Fat += Food.FoodNutrients[NutrientType.Lipid].Amount;
+            if (day.Foods == null)
+            {
+                day.Foods = new List<FoodDS>();
+            }
+            day.Foods.Add(new FoodDS()
+            {
+                FdcId = Food.FdcId,
+                Name = Food.Description,
+                EnergykCal = Food.FoodNutrients[NutrientType.EnergyKcal].Amount,
+                Protein = Food.FoodNutrients[NutrientType.Protein].Amount,
+                Carbohydrates = Food.FoodNutrients[NutrientType.CarbohydrateByDifference].Amount,
+                Fat = Food.FoodNutrients[NutrientType.Lipid].Amount
+            });
             await dataStore.SaveDayAsync(day);
         }
     }
