@@ -39,5 +39,10 @@ namespace NutritionNumerator.Views
                 await viewModel.DeleteAllDataAsync();
             }
         }
+
+        async void OnToggle(object sender, EventArgs e)
+        {
+            await viewModel.SetDarkModeEnabledAsync();
+        }
     }
 }

@@ -17,7 +17,8 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextCell Text="{Binding EnergykCal, StringFormat='{0} kCal'}"
-                              Detail ="{Binding Date.Date, StringFormat='{0:d MMMM yyyy}'}" />
+                              Detail ="{Binding Date.Date, StringFormat='{0:d MMMM yyyy}'}"
+                              TextColor="{DynamicResource OnSurface}" DetailColor="{DynamicResource Secondary}"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

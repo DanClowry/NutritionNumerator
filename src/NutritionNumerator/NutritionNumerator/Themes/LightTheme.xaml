@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NutritionNumerator.Themes.LightTheme">
+
+    <Color x:Key="Primary">#2196F3</Color>
+    <Color x:Key="PrimaryLight">#6EC6FF</Color>
+    <Color x:Key="PrimaryDark">#0069C0</Color>
+    <Color x:Key="Secondary">#FB8C00</Color>
+    <Color x:Key="SecondaryLight">#FFBD45</Color>
+    <Color x:Key="Background">WhiteSmoke</Color>
+    <Color x:Key="Surface">WhiteSmoke</Color>
+    <Color x:Key="Error">#D11A2A</Color>
+    <Color x:Key="OnPrimary">White</Color>
+    <Color x:Key="OnPrimaryLight">Black</Color>
+    <Color x:Key="OnSecondary">Black</Color>
+    <Color x:Key="OnBackground">Black</Color>
+    <Color x:Key="OnSurface">Black</Color>
+    <Color x:Key="OnError">White</Color>
+    <Style TargetType="NavigationPage">
+        <Setter Property="BarBackgroundColor" Value="{StaticResource Primary}" />
+        <Setter Property="BarTextColor" Value="{StaticResource OnPrimary}" />
+    </Style>
+    <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
+        <Setter Property="BackgroundColor" Value="{StaticResource Surface}" />
+    </Style>
+    <Style TargetType="ListView">
+        <Setter Property="BackgroundColor" Value="{StaticResource Surface}" />
+    </Style>
+    <Style TargetType="SearchBar">
+        <Setter Property="TextColor" Value="{StaticResource OnBackground}" />
+        <Setter Property="PlaceholderColor" Value="{StaticResource OnBackground}" />
+    </Style>
+    <Style TargetType="Label" ApplyToDerivedTypes="True">
+        <Setter Property="TextColor" Value="{StaticResource OnSurface}" />
+    </Style>
+    <Style TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource PrimaryLight}" />
+        <Setter Property="TextColor" Value="{StaticResource OnPrimaryLight}" />
+    </Style>
+    <Style TargetType="Switch">
+        <Setter Property="OnColor" Value="{StaticResource SecondaryLight}" />
+        <Setter Property="ThumbColor" Value="{StaticResource Secondary}" />
+    </Style>
+    <Style TargetType="Entry">
+        <Setter Property="TextColor" Value="{StaticResource OnSurface}" />
+        <Setter Property="PlaceholderColor" Value="{StaticResource OnSurface}" />
+    </Style>
+</ResourceDictionary>

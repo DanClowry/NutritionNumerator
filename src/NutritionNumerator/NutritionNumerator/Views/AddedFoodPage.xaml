@@ -13,7 +13,8 @@
             <ListView x:Name="FoodsListView" ItemsSource="{Binding Day.Foods}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding Name}" Detail="{Binding EnergykCal, StringFormat='{0} kCal'}" />
+                        <TextCell Text="{Binding Name}" Detail="{Binding EnergykCal, StringFormat='{0} kCal'}"
+                                  TextColor="{DynamicResource OnSurface}" DetailColor="{DynamicResource Secondary}"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

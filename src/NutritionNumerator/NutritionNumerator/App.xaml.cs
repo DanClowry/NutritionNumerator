@@ -33,6 +33,8 @@ namespace NutritionNumerator
                     throw;
                 }
             }
+
+            settingsService.ToggleDarkMode();
         }
 
         protected override void OnSleep()

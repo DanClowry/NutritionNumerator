@@ -6,10 +6,11 @@
              mc:Ignorable="d"
              x:Class="NutritionNumerator.Views.MenuPage"
              Title="Menu">
-             
-    <StackLayout VerticalOptions="FillAndExpand">
+
+    <StackLayout VerticalOptions="FillAndExpand" BackgroundColor="{DynamicResource Surface}">
         <ListView x:Name="ListViewMenu"
-                    HasUnevenRows="True">
+                  HasUnevenRows="True"
+                  BackgroundColor="{DynamicResource Surface}">
             <d:ListView.ItemsSource>
                 <x:Array Type="{x:Type x:String}">
                     <x:String>Item 1</x:String>
