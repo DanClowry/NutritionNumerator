@@ -3,6 +3,7 @@ using Xamarin.Forms;
 using NutritionNumerator.Views;
 using NutritionNumerator.ViewModels;
 using NutritionNumerator.Services;
+using Xamarin.Essentials;
 
 namespace NutritionNumerator
 {
@@ -35,6 +36,7 @@ namespace NutritionNumerator
             }
 
             settingsService.ToggleDarkMode();
+            VersionTracking.Track();
         }
 
         protected override void OnSleep()
