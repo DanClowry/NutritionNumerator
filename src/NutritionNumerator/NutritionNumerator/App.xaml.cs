@@ -1,7 +1,6 @@
 ﻿using System;
 using Xamarin.Forms;
 using NutritionNumerator.Views;
-using Xamarin.Essentials;
 using NutritionNumerator.ViewModels;
 using NutritionNumerator.Services;
 
@@ -22,7 +21,7 @@ namespace NutritionNumerator
             var settingsService = BaseViewModel.Container.Resolve<SettingsService>();
             if (String.IsNullOrWhiteSpace(await settingsService.GetApiKeyAsync()) || await settingsService.GetApiKeyAsync() == "DEMO-KEY")
             {
-                await settingsService.SetApiKeyAsync("DEMO-KEY");
+                await settingsService.SetApiKeyAsync("DEMO_KEY");
                 string key = await MainPage.DisplayPromptAsync("No API Key", "An API key is needed to use the app. Please generate one at https://api.data.gov/signup/");
                 try
                 {

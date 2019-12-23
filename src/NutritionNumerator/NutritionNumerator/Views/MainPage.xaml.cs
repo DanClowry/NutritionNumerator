@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 using NutritionNumerator.Models;
 
@@ -41,6 +39,9 @@ namespace NutritionNumerator.Views
                         break;
                     case (int)MenuItemType.About:
                         MenuPages.Add(id, new NavigationPage(new AboutPage()));
+                        break;
+                    case (int)MenuItemType.Settings:
+                        MenuPages.Add(id, new NavigationPage(new SettingsPage()));
                         break;
                 }
             }

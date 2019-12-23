@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="NutritionNumerator.Views.SettingsPage"
+             Title="{Binding Title}">
+    <ContentPage.Content>
+        <StackLayout Padding="16">
+            <Label Text="API Key" FontSize="Title" />
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <FormattedString.Spans>
+                            <Span Text="If you do not have an API key, please generate one at " />
+                            <Span Text="https://api.data.gov/signup" TextColor="Blue">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding OpenKeySignupCommand}" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString.Spans>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Entry x:Name="ApiKeyField" Text="{Binding ApiKey}" Placeholder="API key" />
+            <Button Margin="0,10,0,0" Text="Save Key"
+                        Clicked="OnSaveClicked" />
+            <Label Text="Data" FontSize="Title" Padding="0,10,0,0" />
+            <Button Margin="0,10,0,0" Text="Delete All Data"
+                    Clicked="OnDeleteClicked"
+                    BackgroundColor="#d11a2a" TextColor="White" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

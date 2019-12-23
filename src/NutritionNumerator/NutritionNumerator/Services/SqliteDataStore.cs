@@ -19,6 +19,12 @@ namespace NutritionNumerator.Services
             database.CreateTableAsync<FoodDS>().Wait();
         }
 
+        private async Task InitDatabase()
+        {
+            await database.CreateTableAsync<Day>();
+            await database.CreateTableAsync<FoodDS>();
+        }
+
         public Task<List<Day>> GetDaysAsync()
         {
             return database.GetAllWithChildrenAsync<Day>();
@@ -43,6 +49,13 @@ namespace NutritionNumerator.Services
         public Task DeleteDayAsync(Day day)
         {
             return database.DeleteAsync(day, true);
+        }
+
+        public async Task DeleteAllDataAsync()
+        {
+            await database.DropTableAsync<Day>();
+            await database.DropTableAsync<FoodDS>();
+            await InitDatabase();
         }
     }
 }

@@ -1,9 +1,7 @@
 ﻿using NutritionNumerator.Models;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace NutritionNumerator.Views
 {
@@ -23,7 +21,8 @@ namespace NutritionNumerator.Views
                 new HomeMenuItem {Id = MenuItemType.Summary, Title="Summary"},
                 new HomeMenuItem {Id = MenuItemType.Browse, Title="Search" },
                 new HomeMenuItem {Id = MenuItemType.History, Title="History" },
-                new HomeMenuItem {Id = MenuItemType.About, Title="About" }
+                new HomeMenuItem {Id = MenuItemType.About, Title="About" },
+                new HomeMenuItem {Id = MenuItemType.Settings, Title="Settings" }
             };
 
             ListViewMenu.ItemsSource = menuItems;

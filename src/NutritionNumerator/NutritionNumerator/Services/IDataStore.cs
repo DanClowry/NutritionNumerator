@@ -12,5 +12,6 @@ namespace NutritionNumerator.Services
         Task<Day> GetDayAsync(DateTime date);
         Task SaveDayAsync(Day day);
         Task DeleteDayAsync(Day day);
+        Task DeleteAllDataAsync();
     }
 }

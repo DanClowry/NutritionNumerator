@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace NutritionNumerator.Models
+﻿namespace NutritionNumerator.Models
 {
     public enum MenuItemType
     {
         Summary,
         Browse,
         History,
-        About
+        About,
+        Settings
     }
     public class HomeMenuItem
     {
