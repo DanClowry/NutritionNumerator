@@ -16,6 +16,13 @@ using Android.App;
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
 
+// Disable debugging for release builds
+#if DEBUG
+[assembly: Application(Debuggable = true)]
+#else
+[assembly: Application(Debuggable = true)]
+#endif
+
 // Version information for an assembly consists of the following four values:
 //
 //      Major Version
