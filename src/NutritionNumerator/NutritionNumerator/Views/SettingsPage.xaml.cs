@@ -17,14 +17,19 @@ namespace NutritionNumerator.Views
 
         async void OnSaveClicked(object sender, EventArgs e)
         {
+            if (String.IsNullOrWhiteSpace(viewModel.ApiKey))
+            {
+                await DisplayAlert("Error Saving API Key", "An API must be set to use the app. It cannot be empty.", "OK");
+                return;
+            }
+
             try
             {
-                await viewModel.SetApiKeyAsync(ApiKeyField.Text);
+                await viewModel.SetApiKeyAsync();
             }
             catch (Exception)
             {
-                await DisplayAlert("Unable to save key", "The API key could not be saved", "OK");
-                throw;
+                await DisplayAlert("Error Saving API Key", "The API key could not be saved.", "OK");
             }
         }
 

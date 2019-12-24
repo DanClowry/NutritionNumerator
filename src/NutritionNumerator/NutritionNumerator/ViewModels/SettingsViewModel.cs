@@ -25,7 +25,7 @@ namespace NutritionNumerator.ViewModels
         public string ApiKey
         {
             get { return apiKey; }
-            private set { apiKey = value; }
+            set { apiKey = value; }
         }
 
         private IDataStore dataStore;
@@ -60,9 +60,8 @@ namespace NutritionNumerator.ViewModels
             ApiKey = await settingsService.GetApiKeyAsync();
         }
 
-        public async Task SetApiKeyAsync(string newKey)
+        public async Task SetApiKeyAsync()
         {
-            ApiKey = newKey;
             await settingsService.SetApiKeyAsync(ApiKey);
         }
 
