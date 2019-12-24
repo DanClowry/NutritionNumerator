@@ -23,9 +23,9 @@
     <key>MinimumOSVersion</key>
     <string>8.0</string>
     <key>CFBundleDisplayName</key>
-    <string>NutritionNumerator</string>
+    <string>Nutrition Numerator</string>
     <key>CFBundleIdentifier</key>
-    <string>com.companyname.NutritionNumerator</string>
+    <string>com.danclowry.NutritionNumerator</string>
     <key>CFBundleVersion</key>
     <string>1.0</string>
     <key>UILaunchStoryboardName</key>
