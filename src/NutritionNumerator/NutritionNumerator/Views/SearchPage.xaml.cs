@@ -1,6 +1,6 @@
 ﻿using FoodDataCentral.Models;
 using NutritionNumerator.ViewModels;
-using System;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace NutritionNumerator.Views
@@ -31,6 +31,13 @@ namespace NutritionNumerator.Views
 
         async void ItemSelected(object sender, ItemTappedEventArgs e)
         {
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+            {
+                await DisplayAlert("Failed to Load Food",
+                    "An internet connection is needed to load food information. Please enable mobile data or connect to Wi-Fi.", "OK");
+                return;
+            }
+
             var food = (SearchResultFood)e.Item;
             await Navigation.PushAsync(new FoodDetailPage(new FoodDetailViewModel(food.FdcId)));
         }
